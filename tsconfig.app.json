@@ -4,12 +4,17 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
 
     /* Linting */
-    "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    // Contrôle strict
+    "strict": true,                             // Active toutes les vérifications strictes
+    "noImplicitAny": true,                      // Interdit les types 'any' implicites
+    "forceConsistentCasingInFileNames": true   // Sensible à la casse dans les imports
+
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
