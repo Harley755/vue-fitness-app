@@ -11,11 +11,13 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faDumbbell } from '@fortawesome/free-solid-svg-icons'
 import { faWeightHanging } from '@fortawesome/free-solid-svg-icons'
 import { faBolt } from '@fortawesome/free-solid-svg-icons'
+import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons'
 
 // Ajoute les icônes nécessaires à la librairie
 library.add(faDumbbell)
 library.add(faWeightHanging)
 library.add(faBolt)
+library.add(faCircleQuestion)
 
 // Crée l'app et enregistre le composant FontAwesomeIcon globalement
 const app = createApp(App)

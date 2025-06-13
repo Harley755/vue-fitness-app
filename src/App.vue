@@ -24,7 +24,7 @@ export default {
 
   data() {
     return {
-      selectedDisplay: 2,
+      selectedDisplay: 3,
     }
   },
   methods: {
