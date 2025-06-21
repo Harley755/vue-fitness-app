@@ -25,6 +25,8 @@ export default {
   data() {
     return {
       selectedDisplay: 3,
+      data: null,
+      selectedWorkout: -1, // Default to -1 to indicate no workout selected
     }
   },
   methods: {

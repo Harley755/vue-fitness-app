@@ -1,6 +1,14 @@
 <template>
-  <portal></portal>
-  <div id="workout-select">
+  <Portal :handleCloseModal="closeExercice" v-if="selectedExercice">
+    <h4>{{ selectedExercice }}</h4>
+    <div class="mt-4">
+      <small>Description</small>
+      <p>{{ exerciceDescription }}</p>
+    </div>
+    <div class="btn btn-success" @click="closeExercice()">Close</div>
+  </Portal>
+
+  <section id="workout-select">
     <div class="row d-flex justify-content-between g-4">
       <div class="card border-0 shadow-sm col-md-2 mx-2">
         <div class="card-body">
@@ -40,6 +48,7 @@
               <font-awesome-icon
                 icon="fa-solid fa-circle-question"
                 class="question-icon"
+                @click="selectExercice(w.name)"
               />
             </td>
             <td>{{ w.sets }}</td>
@@ -74,6 +83,7 @@
               <font-awesome-icon
                 icon="fa-solid fa-circle-question"
                 class="question-icon"
+                @click="selectExercice(w.name)"
               />
             </td>
             <td>{{ w.sets }}</td>
@@ -95,11 +105,11 @@
       <button class="btn btn-success">Save & Exit</button>
       <button class="btn btn-secondary mx-3">Complete</button>
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
-import { workoutProgram } from '../../utils/index.ts'
+import { exerciseDescriptions, workoutProgram } from '../../utils/index.ts'
 import Portal from '../Portal.vue'
 
 type WorkoutDay = {
@@ -116,6 +126,7 @@ export default {
       program: workoutProgram as Record<number, WorkoutDay>,
       workOutTypes: ['Push', 'Pull', 'Legs'],
       selectWorkout: 4,
+      selectedExercice: null as string | null,
     }
   },
   computed: {
@@ -128,6 +139,23 @@ export default {
     },
     warmup() {
       return this.selectedDay.warmup || []
+    },
+
+    exerciceDescription() {
+      // On récupère la description de l'exercice sélectionné
+      return exerciseDescriptions[
+        this.selectedExercice as keyof typeof exerciseDescriptions
+      ]
+    },
+  },
+  methods: {
+    // Méthode pour gérer la sélection d'un exercice
+    selectExercice(name: string) {
+      this.selectedExercice = name
+    },
+    // Méthode pour fermer la description de l'exercice
+    closeExercice() {
+      this.selectedExercice = null
     },
   },
   mounted() {
